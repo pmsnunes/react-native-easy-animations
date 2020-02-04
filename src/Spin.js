@@ -3,7 +3,7 @@ import { Animated, ViewPropTypes, Easing } from 'react-native';
 import PropTypes from 'prop-types'
 
 const Spin = ({ children, duration, start, end, style }) => {
-  const spinValue = new Animated.Value(0);
+  const spinValue = new Animated.Value(start);
 
   const spin = spinValue.interpolate({
     inputRange: [0, 360],
@@ -14,12 +14,12 @@ const Spin = ({ children, duration, start, end, style }) => {
     Animated.timing(
       spinValue,
       {
-        toValue: 360,
+        toValue: end,
         duration: duration,
         easing: Easing.linear
       }
     ).start()
-  }, []);
+  }, [end]);
 
   return (
     <Animated.View style={{ ...style, transform: [{rotate: spin}] }}>
@@ -41,6 +41,8 @@ Spin.propTypes = {
 
 Spin.defaultProps = {
   duration: 2000,
+  start: 0,
+  end: 360
 }
 
 
