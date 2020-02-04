@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import { Fade } from 'react-native-easy-animations';
+import { Fade, Spin } from 'react-native-easy-animations';
 
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
    * If they are both false, the starting opacity is 1
    */
   const [fadeIn, setFadeIn] = useState(true);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [fadeOut, setFadeOut] = useState(true);
 
   const triggerFadeIn = ()=>{
     setFadeIn(true);
@@ -33,8 +33,12 @@ const App = () => {
     <View style={styles.wrapper}>
     
       <Fade duration={500} fadeIn={fadeIn} fadeOut={fadeOut}>
-        <Text>I am a very good example</Text>
+        <Text>I am a very good fade example</Text>
       </Fade>
+
+      <Spin duration={3000} start={360} end={180}>
+        <Text>I Spin a lot!</Text>
+      </Spin>
       
       <View>
         <TouchableOpacity onPress={triggerFadeIn}>
